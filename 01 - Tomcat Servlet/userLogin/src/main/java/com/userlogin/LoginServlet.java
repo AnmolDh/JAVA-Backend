@@ -31,6 +31,12 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
+        if (!username.matches("^[A-Z][A-Za-z0-9_]{3,16}$")){
+            request.setAttribute("error", "Invalid username");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            return;
+        }
+
         users.add(new User(username, email, password));
         request.setAttribute("username", username);
         request.setAttribute("email", email);

@@ -8,6 +8,6 @@
 <h2>Login Successful!</h2>
 <p>Welcome, <strong><%= request.getAttribute("username") %></strong>!</p>
 <p>Your email: <%= request.getAttribute("email") %></p>
-<a href="login.jsp">Go back to login</a>
+<a href="login.jsp">Go back to log in</a>
 </body>
 </html>
