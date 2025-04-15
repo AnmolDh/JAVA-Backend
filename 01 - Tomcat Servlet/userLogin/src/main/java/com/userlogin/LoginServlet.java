@@ -37,9 +37,27 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
+        if (isValidPassword(password)) {
+            request.setAttribute("error", "Invalid password");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            return;
+        }
+
         users.add(new User(username, email, password));
         request.setAttribute("username", username);
         request.setAttribute("email", email);
         request.getRequestDispatcher("success.jsp").forward(request, response);
     }
+
+    private boolean isValidPassword(String password) {
+        if (password == null || password.length() < 8)
+            return false;
+
+        boolean hasUppercase = password.matches(".*[A-Z].*");
+        boolean hasDigit = password.matches(".*\\d.*");
+        boolean hasOneSpecial = password.replaceAll("[a-zA-Z0-9]", "").length() == 1;
+
+        return hasUppercase && hasDigit && hasOneSpecial;
+    }
+
 }
