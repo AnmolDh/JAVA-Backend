@@ -24,4 +24,9 @@ public class RestApiController {
     public String post(@RequestBody UserDTO userDTO) {
         return "Hello " + userDTO.getFirstName() + " " + userDTO.getLastName();
     }
+
+    @PutMapping("/put/{firstName}")
+    public String put(@PathVariable String firstName, @RequestParam String lastName) {
+        return "Hello " + firstName + " " + lastName;
+    }
 }
