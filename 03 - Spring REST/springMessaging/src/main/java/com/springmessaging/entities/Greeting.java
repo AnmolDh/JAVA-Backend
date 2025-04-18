@@ -1,19 +1,19 @@
 package com.springmessaging.entities;
 
-import lombok.Getter;
-import lombok.Setter;
-
-import java.util.concurrent.atomic.AtomicLong;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import lombok.*;
 
 @Getter
 @Setter
+@Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Greeting {
-    private final static AtomicLong counter = new AtomicLong();
+    @Id
+    @GeneratedValue
     private long id;
     private String message;
-
-    public Greeting(String message) {
-        this.id = counter.incrementAndGet();
-        this.message = message;
-    }
 }
