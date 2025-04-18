@@ -18,12 +18,12 @@ public class GreetingService {
         return Greeting.builder().message("Hello World!").build();
     }
 
-    public List<Greeting> getGreeting() {
-        return greetingRepository.findAll();
-    }
-
     public Greeting getGreeting(long id) {
         return greetingRepository.findById(id).get();
+    }
+
+    public List<Greeting> getGreeting() {
+        return greetingRepository.findAll();
     }
 
     public Greeting addGreeting(String firstName, String lastName) {
