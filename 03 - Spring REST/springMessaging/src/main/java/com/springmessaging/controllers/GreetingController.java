@@ -53,4 +53,13 @@ public class GreetingController {
         }
         return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
     }
+
+    @PutMapping("{id}")
+    public ResponseEntity<Greeting> updateGreeting(
+            @PathVariable long id,
+            @RequestParam(value = "firstName", defaultValue = "") String firstName,
+            @RequestParam(value = "lastName", defaultValue = "") String lastName
+    ) {
+        return new ResponseEntity<>(greetingService.updateGreeting(id, firstName, lastName), HttpStatus.OK);
+    }
 }

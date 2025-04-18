@@ -41,4 +41,13 @@ public class GreetingService {
         return !greetingRepository.existsById(id);
     }
 
+    public Greeting updateGreeting(long id, String firstName, String lastName) {
+        if (!greetingRepository.existsById(id)) {
+            return null;
+        }
+        Greeting greeting = Greeting.builder().message(("Hello " + firstName + " " + lastName).trim()).build();
+        greeting.setId(id);
+        greetingRepository.save(greeting);
+        return greeting;
+    }
 }
