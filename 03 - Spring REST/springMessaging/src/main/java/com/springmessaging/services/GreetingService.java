@@ -31,4 +31,14 @@ public class GreetingService {
         greetingRepository.save(greeting);
         return greeting;
     }
+
+    public boolean deleteGreeting(long id) {
+        if (!greetingRepository.existsById(id)) {
+            return false;
+        }
+        greetingRepository.deleteById(id);
+        greetingRepository.flush();
+        return !greetingRepository.existsById(id);
+    }
+
 }
