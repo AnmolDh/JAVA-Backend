@@ -1,6 +1,7 @@
 package com.springmessaging.controllers;
 
 import com.springmessaging.entities.Greeting;
+import com.springmessaging.services.GreetingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,16 @@ import java.util.concurrent.atomic.AtomicLong;
 public class GreetingController {
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
+    private final GreetingService greetingService;
+
+    public GreetingController(GreetingService greetingService) {
+        this.greetingService = greetingService;
+    }
+
+    @GetMapping("/simple")
+    public ResponseEntity<String> simpleGreeting() {
+        return new ResponseEntity<>(greetingService.getSimpleGreeting(), HttpStatus.OK);
+    }
 
     @GetMapping()
     public ResponseEntity<Greeting> getGreeting(@RequestParam(value = "name", defaultValue = "world") String name) {
