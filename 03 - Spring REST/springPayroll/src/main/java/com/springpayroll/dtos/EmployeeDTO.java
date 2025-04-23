@@ -5,14 +5,17 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Pattern;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 @Getter
 @Setter
+@Data
 public class EmployeeDTO implements Serializable {
     private Integer id;
 
@@ -21,13 +24,14 @@ public class EmployeeDTO implements Serializable {
     private String name;
 
     @NotEmpty(message = "Gender must not be empty")
-    @Pattern(regexp = "M | F", message = "Gender needs to be M or F")
-    private Character gender;
+    @Pattern(regexp = "^(M|F)$", message = "Gender needs to be M or F")
+    private String gender;
 
     @NotNull(message = "startDate must not be null")
     @JsonFormat(pattern = "dd MM yyyy")
     @PastOrPresent(message = "startDate should be past or present")
     private Date startDate;
 
-    private PayrollDTO payroll;
+    private Integer payrollId;
+    private List<Integer> deptIds;
 }
