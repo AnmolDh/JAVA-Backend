@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 @Getter
 @Setter
@@ -15,5 +16,10 @@ public class EmployeeDTO implements Serializable {
     @NotEmpty
     @Pattern(regexp = "^[A-Za-z ]{2,50}$", message = "Name must be 2-50 characters and contain only letters and spaces")
     private String name;
+
+    private Character gender;
+
+    private Date startDate;
+
     private PayrollDTO payroll;
 }
